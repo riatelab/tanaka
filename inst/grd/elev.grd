@@ -1,0 +1,26 @@
+[general]
+creator=R package 'raster'
+created=2019-03-04 11:51:39
+[georeference]
+nrows=282
+ncols=315
+xmin=586106.263048331
+ymin=6416551.53022084
+xmax=603242.263048331
+ymax=6431835.93022084
+projection=+proj=lcc +lat_1=44 +lat_2=49 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +units=m +no_defs
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=1
+bandorder=BIL
+categorical=FALSE
+minvalue=88.404668415614
+maxvalue=418.000779682644
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=layer

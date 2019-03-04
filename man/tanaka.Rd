@@ -6,8 +6,9 @@
 \alias{tanaka-package}
 \title{tanaka}
 \usage{
-tanaka(x, nclass = 8, breaks, col, mask, light = "grey95",
-  dark = "grey5", shift)
+tanaka(x, nclass = 8, breaks, col, mask, light = "#ffffff70",
+  dark = "#00000090", shift, legend.pos = "left",
+  legend.title = "Elevation")
 }
 \arguments{
 \item{x}{a raster or an sf contour layer.}
@@ -25,9 +26,25 @@ tanaka(x, nclass = 8, breaks, col, mask, light = "grey95",
 \item{dark}{dark shadow (SE color)}
 
 \item{shift}{size of the shadow (in map units)}
+
+\item{legend.pos}{position of the legend}
+
+\item{legend.title}{title of the legend}
 }
 \description{
 Tanaka pkg
 
 Plot a tanaka map.
+}
+\examples{
+library(tanaka)
+library(raster)
+library(sf)
+com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"), quiet = TRUE)
+ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
+tanaka(ras)
+tanaka(ras, mask = com)
+tanaka(ras, breaks = seq(80,400,20),
+       legend.pos = "topright",
+       legend.title = "Elevation\\n(meters)")
 }

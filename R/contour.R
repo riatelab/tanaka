@@ -1,5 +1,5 @@
 #' @title Contour Layer
-#' @name rasToPoly
+#' @name tanaka_contour
 #' @description Create a contour layer.
 #' @param x a raster or an sf contour layer.
 #' @param nclass number of class.
@@ -9,7 +9,17 @@
 #' @import sf
 #' @import isoband
 #' @import raster
-rasToPoly <- function(x, nclass = 8, breaks, mask){
+#' @import lwgeom
+#' @examples
+#' library(tanaka)
+#' library(raster)
+#' library(sf)
+#' ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
+#' iso <- tanaka_contour(x = ras)
+#' plot(st_geometry(iso), col = c("#FBDEE1", "#F0BFC3", "#E7A1A6",
+#'                                "#DD8287", "#D05A60", "#C03239",
+#'                                "#721B20", "#1D0809"))
+tanaka_contour <- function(x, nclass = 8, breaks, mask){
   ext <- x@extent
   nc <- x@ncols
   nr <- x@nrows
@@ -37,11 +47,18 @@ rasToPoly <- function(x, nclass = 8, breaks, mask){
                max = lev_high,
                geometry = st_sfc(bands),
                crs = st_crs(x))
+  # clean geoms
+  st_geometry(res) <- st_make_valid(st_geometry(res))
+  if(methods::is(st_geometry(res),"sfc_GEOMETRY")){
+    st_geometry(res) <-   st_collection_extract(st_geometry(res), "POLYGON")
+  }
+
   if(!missing(mask)){
     if(methods::is(mask, "Spatial")){mask <- st_as_sf(mask)}
     options(warn=-1)
-    res <- st_cast(st_intersection(x = res, y = st_buffer(st_union(mask),0)))
+    res <- st_cast(st_intersection(x = res, y = st_union(mask)))
     options(warn=0)
   }
   return(res)
 }
+

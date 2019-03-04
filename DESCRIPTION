@@ -6,7 +6,10 @@ Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", role
 Description: The tanaka maps are nice looking maps. Here we provide 2 functions to 
     design them. ref. 
 License: GPL-3
-Imports: raster, sf, isoband, methods, cartography
+Imports: raster, sf, isoband, methods, lwgeom, grDevices, graphics
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Suggests: 
+    testthat, 
+    sp
