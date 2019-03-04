@@ -3,7 +3,7 @@
 
 
 # Tanaka Method
-![](https://raw.githubusercontent.com/rCarto/cartography/master/img/tanaka.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/tanaka.png)
 
 Also called "relief contours method", "illuminated contour method" or "shaded contour lines method", this method enhances the representation of the relief on a map by using shaded contour lines. The result is a 3D-like map.
 
@@ -41,5 +41,5 @@ cols <- c("#F7E1C6", "#EED4C1", "#E5C9BE", "#DCBEBA", "#D3B3B6", "#CAA8B3",
           "#7C4692", "#6B3D86", "#573775", "#433266", "#2F2C56", "#1B2847")
 tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ```
-![](https://raw.githubusercontent.com/rCarto/cartography/master/img/ex.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex.png)
 
