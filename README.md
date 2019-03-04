@@ -1,5 +1,5 @@
 [![Travis build status](https://travis-ci.org/rCarto/tanaka.svg?branch=master)](https://travis-ci.org/rCarto/tanaka)
-
+[![Coverage status](https://codecov.io/gh/rCarto/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/rCarto/tanaka?branch=master)
 
 
 # Tanaka Method
@@ -12,7 +12,7 @@ Also called "relief contours method", "illuminated contour method" or "shaded co
 - `tanaka()` uses a `raster` object and displays the map directly;
 - `tanaka_contour()` builds the isopleth polygon layer. 
 
-Tanaka, K., 1950. The relief contour method of representing topography on maps. The Geographical Review.
+
 
 
 ## Installation
@@ -43,3 +43,6 @@ tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ```
 ![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex.png)
 
+
+
+ref: Tanaka, K., 1950. The relief contour method of representing topography on maps. The Geographical Review.
