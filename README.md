@@ -6,13 +6,13 @@
 ![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/banner.png)  
 
 Also called "relief contours method", "illuminated contour method" or "shaded 
-contour lines method", the Tanaka method[^1] enhances the representation of topography 
+contour lines method", the Tanaka method<sup>[1](#fn1)</sup> enhances the representation of topography 
 on a map by using shaded contour lines. The result is a 3D-like map.
 
 This package is a simplified implementation of the Tanaka method, north-west white contours represent 
-illuminated topography, and south-east black contours represent shaded topography. 
+illuminated topography and south-east black contours represent shaded topography. 
 Even if the results are quite satisfactory, a more refined method could be used 
-based on the Kennelly and Kimerling's paper[^2]. 
+based on the Kennelly and Kimerling's paper<sup>[2](#fn2)</sup>. 
 
 
 `tanaka` is a small package with two functions:
@@ -62,8 +62,7 @@ tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex2.png)  
 
 
-
-[^1]: [Tanaka, K. (1950). The relief contour method of representing topography on maps. *Geographical Review, 40*(3), 444-456.](https://www.jstor.org/stable/211219)
-[^2]: [Kennelly, P., & Kimerling, A. J. (2001). Modifications of Tanaka's illuminated contour method. *Cartography and Geographic Information Science, 28*(2), 111-123.](http://www.mbmg.mtech.edu/pdf/gis_illum.pdf)
+<a name="fn1">1</a>: Tanaka, K. (1950). The relief contour method of representing topography on maps. *Geographical Review, 40*(3), 444-456.  
+<a name="fn2">2</a>: Kennelly, P., & Kimerling, A. J. (2001). Modifications of Tanaka's illuminated contour method. *Cartography and Geographic Information Science, 28*(2), 111-123.
 
 

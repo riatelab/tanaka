@@ -5,7 +5,9 @@ Version: 0.1.0
 Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", 
     role = c("cre","aut"))
 Description: The Tanaka method enhances the representation of topography on a 
-    map using shaded contour lines. See Tanaka (1950) <doi:10.2307/211219>.
+    map using shaded contour lines. In this simplified implementation 
+    of the method, north-west white contours represent illuminated 
+    topography and south-east black contours represent shaded topography.
 License: GPL-3
 Imports: 
     raster, 
