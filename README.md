@@ -1,9 +1,9 @@
+# Tanaka Method
+
 [![Travis build status](https://travis-ci.org/rCarto/tanaka.svg?branch=master)](https://travis-ci.org/rCarto/tanaka)
 [![Coverage status](https://codecov.io/gh/rCarto/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/rCarto/tanaka?branch=master)
 
-
-# Tanaka Method
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/banner.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/banner.png)  
 
 Also called "relief contours method", "illuminated contour method" or "shaded 
 contour lines method", the Tanaka method[^1] enhances the representation of topography 
@@ -42,7 +42,7 @@ ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
 tanaka(ras, breaks = seq(80,400,20), 
        legend.pos = "topright", legend.title = "Elevation\n(meters)")
 ```
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex1.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex1.png)  
 
 This example is based on an  elevation raster downloaded via 
 [`elevatr`](https://github.com/jhollist/elevatr). 
@@ -59,7 +59,7 @@ cols <- c("#F7E1C6", "#EED4C1", "#E5C9BE", "#DCBEBA", "#D3B3B6", "#CAA8B3",
 # display the map
 tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ```
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex2.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex2.png)  
 
 
 
