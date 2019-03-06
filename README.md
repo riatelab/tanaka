@@ -3,9 +3,17 @@
 
 
 # Tanaka Method
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/tanaka.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/banner.png)
 
-Also called "relief contours method", "illuminated contour method" or "shaded contour lines method", this method enhances the representation of the relief on a map by using shaded contour lines. The result is a 3D-like map.
+Also called "relief contours method", "illuminated contour method" or "shaded 
+contour lines method", the Tanaka method[^1] enhances the representation of topography 
+on a map by using shaded contour lines. The result is a 3D-like map.
+
+This package is a simplified implementation of the Tanaka method, north-west white contours represent 
+illuminated topography, and south-east black contours represent shaded topography. 
+Even if the results are quite satisfactory, a more refined method could be used 
+based on the Kennelly and Kimerling's paper[^2]. 
+
 
 `tanaka` is a small package with two functions:
 
@@ -13,6 +21,8 @@ Also called "relief contours method", "illuminated contour method" or "shaded co
 - `tanaka_contour()` builds the isopleth polygon layer. 
 
 
+The contour lines creation relies on [`isoband`](https://github.com/clauswilke/isoband), 
+spatial manipulation and display relie on [`sf`](https://github.com/r-spatial/sf). 
 
 
 ## Installation
@@ -23,26 +33,37 @@ install_github("rCarto/tanaka")
 ```
 
 ## Demo
+
+This example is based on the dataset shipped within the package. 
+```{r}
+library(tanaka)
+library(raster)
+ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
+tanaka(ras, breaks = seq(80,400,20), 
+       legend.pos = "topright", legend.title = "Elevation\n(meters)")
+```
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex1.png)
+
+This example is based on an  elevation raster downloaded via 
+[`elevatr`](https://github.com/jhollist/elevatr). 
 ```{r}
 library(tanaka)
 library(elevatr)
-library(raster)
 # use elevatr to get elevation data
-ras0 <- get_elev_raster(
-  locations = data.frame(x = c(6.7, 7),
-                         y = c(45.8,48)),
-  z = 10,
-  prj = "+init=epsg:4326"
-)
-ras <- crop(ras0, y = extent(c(6.7, 7, 45.8 ,46)))
-# display the map
+ras <- get_elev_raster(locations = data.frame(x = c(6.7, 7), y = c(45.8,46)),
+                       z = 10, prj = "+init=epsg:4326", clip = "locations")
+# custom color palette
 cols <- c("#F7E1C6", "#EED4C1", "#E5C9BE", "#DCBEBA", "#D3B3B6", "#CAA8B3", 
           "#C19CAF", "#B790AB", "#AC81A7", "#A073A1", "#95639D", "#885497", 
           "#7C4692", "#6B3D86", "#573775", "#433266", "#2F2C56", "#1B2847")
+# display the map
 tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ```
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex.png)
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex2.png)
 
 
 
-ref: Tanaka, K., 1950. The relief contour method of representing topography on maps. The Geographical Review.
+[^1]: [Tanaka, K. (1950). The relief contour method of representing topography on maps. Geographical Review, 40(3), 444-456.](https://www.jstor.org/stable/211219)
+[^2]: [Kennelly, P., & Kimerling, A. J. (2001). Modifications of Tanaka's illuminated contour method. Cartography and Geographic Information Science, 28(2), 111-123.](http://www.mbmg.mtech.edu/pdf/gis_illum.pdf)
+
+

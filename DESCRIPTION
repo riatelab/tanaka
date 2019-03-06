@@ -2,11 +2,19 @@ Package: tanaka
 Type: Package
 Title: Design Shaded Contour Lines (or Tanaka) Maps
 Version: 0.1.0
-Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", role = c("cre","aut"))
-Description: The tanaka maps are nice looking maps. Here we provide 2 functions to 
-    design them. ref. 
+Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", 
+    role = c("cre","aut"))
+Description: The Tanaka method enhances the representation of topography on a 
+    map using shaded contour lines. See Tanaka (1950) <doi:10.2307/211219>.
 License: GPL-3
-Imports: raster, sf, isoband, methods, lwgeom, grDevices, graphics
+Imports: 
+    raster, 
+    sf, 
+    isoband, 
+    methods, 
+    lwgeom, 
+    grDevices, 
+    graphics
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
