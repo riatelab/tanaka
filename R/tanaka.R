@@ -1,21 +1,27 @@
-#' @title Tanaka Map
+#' @title Plot a Tanaka Map
 #' @name tanaka
-#' @description Plot a tanaka map.
-#' @param x a raster or an sf contour layer.
-#' @param nclass number of class.
-#' @param breaks list of breaks.
+#' @description This function plots a tanaka map.
+#' @param x a raster or an sf contour layer (e.g. the result of \code{tanaka_contour()}).
+#' @param nclass a number of class.
+#' @param breaks a list of breaks.
+#' @param mask a mask layer, a POLYGON or MULTIPOLYGON sf object.
 #' @param col a color palette (a vector of colors).
-#' @param mask a mask layer, sf object.
-#' @param light light shadow (NW color)
-#' @param dark dark shadow (SE color)
-#' @param shift size of the shadow (in map units)
-#' @param legend.pos position of the legend
-#' @param legend.title title of the legend
+#' @param light light shadow (NW color).
+#' @param dark dark shadow (SE color).
+#' @param shift size of the shadow (in map units).
+#' @param legend.pos  position of the legend, one of "topleft", "top",
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a
+#' vector of two coordinates in map units (c(x, y)). If
+#' legend.pos="n" then the legend is not plotted.
+#' @param legend.title title of the legend.
 #' @export
 #' @import sf
 #' @import isoband
 #' @import raster
 #' @importFrom grDevices colorRampPalette
+#' @references Tanaka, K. (1950). The relief contour method of representing
+#' topography on maps. \emph{Geographical Review, 40}(3), 444-456.
+#' @return A Tanaka contour map is plotted.
 #' @examples
 #' library(tanaka)
 #' library(raster)

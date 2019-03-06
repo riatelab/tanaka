@@ -15,7 +15,6 @@ library(cartography)
 library(sf)
 library(elevatr)
 
-com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"), quiet = TRUE)
 ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
 ras <- crop(ras, extent(586101.7,603178.4, 6421500, 6428100))
 iso <- tanaka_contour(ras, breaks = seq(80,400,20))
@@ -25,7 +24,6 @@ par(mar = c(0,0,0,0))
 tanaka(iso,legend.pos = "n")
 dev.off()
 
-com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"), quiet = TRUE)
 ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
 png("img/ex1.png", width = 700, height = 533, res =100, bg = NA)
 par(mar = c(0,0,0,0))
@@ -45,3 +43,7 @@ png("img/ex2.png", width = 700, height = 533, res =100, bg = NA)
 par(mar=c(0,0,0,0))
 tanaka(ras, breaks = seq(500,4800,250), col = cols)
 dev.off()
+
+
+
+tools::toTitleCase("Design Shaded Contour Lines (or Tanaka) Maps")

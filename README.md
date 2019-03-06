@@ -63,7 +63,7 @@ tanaka(ras, breaks = seq(500,4800,250), col = cols)
 
 
 
-[^1]: [Tanaka, K. (1950). The relief contour method of representing topography on maps. Geographical Review, 40(3), 444-456.](https://www.jstor.org/stable/211219)
-[^2]: [Kennelly, P., & Kimerling, A. J. (2001). Modifications of Tanaka's illuminated contour method. Cartography and Geographic Information Science, 28(2), 111-123.](http://www.mbmg.mtech.edu/pdf/gis_illum.pdf)
+[^1]: [Tanaka, K. (1950). The relief contour method of representing topography on maps. *Geographical Review, 40*(3), 444-456.](https://www.jstor.org/stable/211219)
+[^2]: [Kennelly, P., & Kimerling, A. J. (2001). Modifications of Tanaka's illuminated contour method. *Cartography and Geographic Information Science, 28*(2), 111-123.](http://www.mbmg.mtech.edu/pdf/gis_illum.pdf)
 
 

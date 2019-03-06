@@ -11,30 +11,36 @@ tanaka(x, nclass = 8, breaks, col, mask, light = "#ffffff70",
   legend.title = "Elevation")
 }
 \arguments{
-\item{x}{a raster or an sf contour layer.}
+\item{x}{a raster or an sf contour layer (e.g. the result of \code{tanaka_contour()}).}
 
-\item{nclass}{number of class.}
+\item{nclass}{a number of class.}
 
-\item{breaks}{list of breaks.}
+\item{breaks}{a list of breaks.}
 
 \item{col}{a color palette (a vector of colors).}
 
-\item{mask}{a mask layer, sf object.}
+\item{mask}{a mask layer, a POLYGON or MULTIPOLYGON sf object.}
 
-\item{light}{light shadow (NW color)}
+\item{light}{light shadow (NW color).}
 
-\item{dark}{dark shadow (SE color)}
+\item{dark}{dark shadow (SE color).}
 
-\item{shift}{size of the shadow (in map units)}
+\item{shift}{size of the shadow (in map units).}
 
-\item{legend.pos}{position of the legend}
+\item{legend.pos}{position of the legend, one of "topleft", "top",
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a
+vector of two coordinates in map units (c(x, y)). If
+legend.pos="n" then the legend is not plotted.}
 
-\item{legend.title}{title of the legend}
+\item{legend.title}{title of the legend.}
+}
+\value{
+A Tanaka contour map is plotted.
 }
 \description{
 Tanaka pkg
 
-Plot a tanaka map.
+This function plots a tanaka map.
 }
 \examples{
 library(tanaka)
@@ -47,4 +53,8 @@ tanaka(ras, mask = com)
 tanaka(ras, breaks = seq(80,400,20),
        legend.pos = "topright",
        legend.title = "Elevation\\n(meters)")
+}
+\references{
+Tanaka, K. (1950). The relief contour method of representing
+topography on maps. \emph{Geographical Review, 40}(3), 444-456.
 }

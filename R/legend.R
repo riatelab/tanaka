@@ -1,3 +1,4 @@
+## this function is a light version of legendChoro from cartography...
 #' @name legendtanaka
 #' @title legendtanaka
 #' @importFrom graphics par rect strheight strwidth xinch

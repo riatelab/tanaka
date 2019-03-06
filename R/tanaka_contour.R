@@ -1,10 +1,13 @@
-#' @title Contour Layer
+#' @title Create a Contour Layer
 #' @name tanaka_contour
 #' @description Create a contour layer.
-#' @param x a raster or an sf contour layer.
-#' @param nclass number of class.
-#' @param breaks list of breaks.
-#' @param mask a mask layer, sf object.
+#' @param x a raster object.
+#' @param nclass a number of class.
+#' @param breaks a list of breaks.
+#' @param mask a mask layer, a POLYGON or MULTIPOLYGON sf object.
+#' @return A MULTIPOLYGON sf object is return. The data.frame contains 3 fields:
+#' id, min (minimum value of the raster in the MULTIPOLYGON) and max (maximum
+#' value of the raster in the MULTIPOLYGON).
 #' @export
 #' @import sf
 #' @import isoband
@@ -20,6 +23,7 @@
 #'                                "#DD8287", "#D05A60", "#C03239",
 #'                                "#721B20", "#1D0809"))
 tanaka_contour <- function(x, nclass = 8, breaks, mask){
+  # data preparation
   ext <- x@extent
   nc <- x@ncols
   nr <- x@nrows
@@ -27,6 +31,8 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask){
   lon <- seq(ext[1], ext[2], length.out = nc)
   lat <- seq(ext[3], ext[4], length.out = nr)
   m <- matrix(data = val, nrow = nc, dimnames = list(lon,lat))
+
+  # breaks management
   vmin <- min(m, na.rm = TRUE)
   vmax <- max(m, na.rm = TRUE)
   if(missing(breaks)){
@@ -36,6 +42,8 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask){
   }
   lev_low = breaks[1:(length(breaks)-1)]
   lev_high = breaks[2:length(breaks)]
+
+  # raster to sf
   raw <- isobands(x = as.numeric(rownames(m)),
                   y = rev(as.numeric(colnames(m))),
                   z = t(m),
@@ -53,11 +61,11 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask){
     st_geometry(res) <-   st_collection_extract(st_geometry(res), "POLYGON")
   }
 
+  # mask management
   if(!missing(mask)){
     if(methods::is(mask, "Spatial")){mask <- st_as_sf(mask)}
-    options(warn=-1)
+    st_agr(res) <- "constant"
     res <- st_cast(st_intersection(x = res, y = st_union(mask)))
-    options(warn=0)
   }
   return(res)
 }
