@@ -8,10 +8,11 @@
 \usage{
 tanaka(x, nclass = 8, breaks, col, mask, light = "#ffffff70",
   dark = "#00000090", shift, legend.pos = "left",
-  legend.title = "Elevation")
+  legend.title = "Elevation", add = FALSE)
 }
 \arguments{
-\item{x}{a raster or an sf contour layer (e.g. the result of \code{tanaka_contour()}).}
+\item{x}{a raster or an sf contour layer (e.g. the result of
+\code{tanaka_contour()}).}
 
 \item{nclass}{a number of class.}
 
@@ -33,6 +34,9 @@ vector of two coordinates in map units (c(x, y)). If
 legend.pos="n" then the legend is not plotted.}
 
 \item{legend.title}{title of the legend.}
+
+\item{add}{whether to add the layer to an existing plot (TRUE) or
+not (FALSE).}
 }
 \value{
 A Tanaka contour map is plotted.

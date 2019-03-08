@@ -1,7 +1,8 @@
 #' @title Plot a Tanaka Map
 #' @name tanaka
 #' @description This function plots a tanaka map.
-#' @param x a raster or an sf contour layer (e.g. the result of \code{tanaka_contour()}).
+#' @param x a raster or an sf contour layer (e.g. the result of
+#' \code{tanaka_contour()}).
 #' @param nclass a number of class.
 #' @param breaks a list of breaks.
 #' @param mask a mask layer, a POLYGON or MULTIPOLYGON sf object.
@@ -14,6 +15,8 @@
 #' vector of two coordinates in map units (c(x, y)). If
 #' legend.pos="n" then the legend is not plotted.
 #' @param legend.title title of the legend.
+#' @param add whether to add the layer to an existing plot (TRUE) or
+#' not (FALSE).
 #' @export
 #' @import sf
 #' @import isoband
@@ -35,7 +38,8 @@
 #'        legend.title = "Elevation\n(meters)")
 tanaka <- function(x, nclass = 8, breaks, col, mask,
                    light = "#ffffff70", dark = "#00000090",
-                   shift, legend.pos = "left", legend.title="Elevation"){
+                   shift, legend.pos = "left", legend.title="Elevation",
+                   add = FALSE){
   if(methods::is(x, "RasterLayer")){
     x <- tanaka_contour(x = x, nclass = nclass, breaks = breaks, mask = mask)
   }
@@ -49,7 +53,7 @@ tanaka <- function(x, nclass = 8, breaks, col, mask,
   }
   if(missing(shift)){shift <- diff(st_bbox(x)[c(1,3)]) / 700}
   x <- x[order(x$min),]
-  plot(st_geometry(x), col = NA, border = NA)
+  plot(st_geometry(x), col = NA, border = NA, add = add)
   for(i in 1:nrow(x)){
     p <- st_geometry(x[i,])
     plot(p + c(-shift, shift), col = light, border = light, add = TRUE)
