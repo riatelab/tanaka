@@ -23,14 +23,16 @@
 #'                                "#DD8287", "#D05A60", "#C03239",
 #'                                "#721B20", "#1D0809"))
 tanaka_contour <- function(x, nclass = 8, breaks, mask){
-  # data preparation
-  ext <- x@extent
-  nc <- x@ncols
-  nr <- x@nrows
-  val <- values(x)
-  lon <- seq(ext[1], ext[2], length.out = nc)
-  lat <- seq(ext[3], ext[4], length.out = nr)
-  m <- matrix(data = val, nrow = nc, dimnames = list(lon,lat))
+
+  ext <- extent(x)
+  nc <- ncol(x)
+  nr <- nrow(x)
+  xr <- xres(x)/2
+  yr <- yres(x)/2
+
+  lon <- seq(ext[1] + xr, ext[2] - xr, length.out = nc)
+  lat <- seq(ext[4] - yr, ext[3] + yr, length.out = nr)
+  m <- matrix(data = values(x), nrow = nr, byrow = TRUE)
 
   # breaks management
   vmin <- min(m, na.rm = TRUE)
@@ -44,29 +46,33 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask){
   lev_high = breaks[2:length(breaks)]
 
   # raster to sf
-  raw <- isobands(x = as.numeric(rownames(m)),
-                  y = rev(as.numeric(colnames(m))),
-                  z = t(m),
+  raw <- isobands(x = lon,
+                  y = lat,
+                  z = m,
                   levels_low = lev_low,
                   levels_high = c(lev_high[-length(lev_high)], vmax + 1e-10))
+
   bands <- iso_to_sfg(raw)
-  res <- st_sf(id = 1:length(bands),
+
+  iso <- st_sf(id = 1:length(bands),
                min = lev_low,
                max = lev_high,
                geometry = st_sfc(bands),
                crs = st_crs(x))
+
   # clean geoms
-  st_geometry(res) <- st_make_valid(st_geometry(res))
-  if(methods::is(st_geometry(res),"sfc_GEOMETRY")){
-    st_geometry(res) <-   st_collection_extract(st_geometry(res), "POLYGON")
+  st_geometry(iso) <- st_make_valid(st_geometry(iso))
+  if(methods::is(st_geometry(iso),"sfc_GEOMETRY")){
+    st_geometry(iso) <-   st_collection_extract(st_geometry(iso), "POLYGON")
   }
 
   # mask management
   if(!missing(mask)){
     if(methods::is(mask, "Spatial")){mask <- st_as_sf(mask)}
-    st_agr(res) <- "constant"
-    res <- st_cast(st_intersection(x = res, y = st_union(mask)))
+    st_agr(iso) <- "constant"
+    iso <- st_cast(st_intersection(x = iso, y = st_union(mask)))
   }
-  return(res)
+
+  return(iso)
 }
 
