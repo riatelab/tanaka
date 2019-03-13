@@ -1,8 +1,7 @@
 language: r
 r:
   - release
-# devel en pls on travis
-#  - devel
+  - devel
 
 cache: packages
 
