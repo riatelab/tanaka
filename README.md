@@ -22,7 +22,7 @@ based on the Kennelly and Kimerling's paper<sup>[2](#fn2)</sup>.
 
 
 The contour lines creation relies on [`isoband`](https://github.com/clauswilke/isoband), 
-spatial manipulation and display relie on [`sf`](https://github.com/r-spatial/sf). 
+spatial manipulation and display rely on [`sf`](https://github.com/r-spatial/sf). 
 
 
 ## Installation
@@ -34,7 +34,7 @@ install_github("rCarto/tanaka")
 
 ## Demo
 
-This example is based on the dataset shipped within the package. 
+* This example is based on the dataset shipped within the package. 
 ```{r}
 library(tanaka)
 library(raster)
@@ -44,7 +44,7 @@ tanaka(ras, breaks = seq(80,400,20),
 ```
 ![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex1.png)  
 
-This example is based on an  elevation raster downloaded via 
+* This example is based on an  elevation raster downloaded via 
 [`elevatr`](https://github.com/jhollist/elevatr). 
 ```{r}
 library(tanaka)
@@ -61,6 +61,52 @@ tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ```
 ![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex2.png)  
 
+* The last example illustrates the use of tanaka with non-topographical data. 
+This map is based on the [Global Human Settlement Population Grid](https://ghsl.jrc.ec.europa.eu/ghs_pop.php) (1km). 
+
+```{r}
+library(raster)
+library(sf)
+library(viridis)
+library(cartography)
+library(tanaka)
+
+temp <- tempfile()
+data_url <- "http://cidportal.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GPW4_GLOBE_R2015A/GHS_POP_GPW42015_GLOBE_R2015A_54009_1k/V1-0/GHS_POP_GPW42015_GLOBE_R2015A_54009_1k_v1_0.zip"
+download.file(data_url, temp)
+unzip(temp, exdir = "pop")
+pop2015 <- raster("pop/GHS_POP_GPW42015_GLOBE_R2015A_54009_1k_v1_0/GHS_POP_GPW42015_GLOBE_R2015A_54009_1k_v1_0.tif")
+center <- st_as_sf(data.frame(x=425483.8, y=5608290), 
+                   coords=(c("x","y")), crs = st_crs(pop2015))
+center <- st_buffer(center, dist = 800000)
+ras <- crop(pop2015, st_bbox(center)[c(1,3,2,4)])
+mat <- focalWeight(x = ras, d = c(10000), type = "Gauss")
+rassmooth <- focal(x = ras, w = mat, fun = sum, pad = TRUE, padValue = 30)
+bks <- c(0,25,50,100,250,500,750,1000,1750,2500,5000, 7500,10000)
+png(filename = "circle.png", width = 800, height = 700, res = 100)
+par(mar = c(0,0,1.2,0))
+tanaka(x = rassmooth, 
+       breaks = bks, 
+       mask = center, 
+       col = inferno(12),shift = 2500,
+       legend.pos = "topleft",
+       legend.title = "Inhabitants\nper km2")
+plot(st_geometry(center), add = T, border = "white", lwd = 6)
+layoutLayer(title = "Smoothed Population Density", 
+            author = 'Data : European Commission, Joint Research Centre (JRC); Columbia University, CIESIN (2015): GHS population grid, derived from GPW4.', 
+            sources = 'T. Giraud, 2019', scale = F, frame = F, tabtitle = TRUE)
+text(-374516.2 ,6408290.0, "Gaussian smoothing, sigma = 10km", adj = 0, font = 3, cex = .8 )
+dev.off()
+```
+
+
+![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/circle.png)
+
+## Alternative Package
+The [`metR` package](https://CRAN.R-project.org/package=metR) allows to draw [Tanaka contours with ggplot2](https://eliocamp.github.io/metR/reference/geom_contour_tanaka.html).
+
+
+-------------------------------------------
 
 <a name="fn1">1</a>: Tanaka, K. (1950). The relief contour method of representing topography on maps. *Geographical Review, 40*(3), 444-456.  
 <a name="fn2">2</a>: Kennelly, P., & Kimerling, A. J. (2001). Modifications of Tanaka's illuminated contour method. *Cartography and Geographic Information Science, 28*(2), 111-123.
