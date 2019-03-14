@@ -24,7 +24,7 @@ test_that("tanaka works", {
 })
 
 
-fufun <- function(){
+fufun <- function(ras){
   for (i in list("bottomleft", "topleft", "topright", "bottomright",
                  "left", "right", "top", "bottom", "center",
                  "bottomleftextra", "n", c(589477, 6421370))){
@@ -32,5 +32,5 @@ fufun <- function(){
   }
 }
 test_that("legend works", {
-  expect_silent(fufun())
+  expect_silent(fufun(ras))
 })

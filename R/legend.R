@@ -16,7 +16,11 @@ legendtanaka <- function(pos = "topleft",
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
                  "left", "right", "top", "bottom", "center",
                  "bottomleftextra")
-  if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
+  if (length(pos) == 1){
+    if (!pos %in% positions){
+      return(invisible())
+    }
+  }
 
   # figdim in geo coordinates
   x1 <- par()$usr[1]
@@ -29,11 +33,11 @@ legendtanaka <- function(pos = "topleft",
   delta2 <- delta1 / 2
 
   # variables internes
-  width <- (x2 - x1) / (30/cex)
+  width <- (x2 - x1) / (30 / cex)
   height <- width / 1.5
 
   # extent
-  if(!is.character(breaks)){
+  if (!is.character(breaks)){
     breaks <- as.numeric(round(breaks, values.rnd))
   }
 
@@ -41,7 +45,7 @@ legendtanaka <- function(pos = "topleft",
   longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
   legend_xsize <- max(width + longval,
                       strwidth(title.txt, cex = title.cex) - delta2) - delta2
-  legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt,
+  legend_ysize <- (length(breaks) - 1) * height +  strheight(title.txt,
                                                            cex = title.cex)
 
   # Get legend position
@@ -53,16 +57,16 @@ legendtanaka <- function(pos = "topleft",
   yref <- legcoord$yref
 
   # box display
-  for (i in 0:(length(breaks)-2)){
+  for (i in 0:(length(breaks) - 2)){
     rect(xref, yref + i * height, xref + width, yref + height + i * height,
-         col = col[i+1], border = border, lwd = 0.4)
+         col = col[i + 1], border = border, lwd = 0.4)
   }
 
 
   # text display
   for (i in 1:(length(breaks))){
     text(x = xref + width + delta2, y = yref + (i-1) * height,
-         labels = breaks[i], adj = c(0,0.5), cex = values.cex)
+         labels = breaks[i], adj = c(0, 0.5), cex = values.cex)
   }
 
   # title
