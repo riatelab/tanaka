@@ -18,10 +18,9 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or
 #' not (FALSE).
 #' @export
-#' @import sf
-#' @import isoband
-#' @import raster
+#' @importFrom sf st_geometry st_bbox
 #' @importFrom grDevices colorRampPalette
+#' @importFrom graphics plot
 #' @references Tanaka, K. (1950). The relief contour method of representing
 #' topography on maps. \emph{Geographical Review, 40}(3), 444-456.
 #' @return A Tanaka contour map is plotted.
@@ -54,7 +53,7 @@ tanaka <- function(x, nclass = 8, breaks, col, mask,
   if(missing(shift)){shift <- diff(st_bbox(x)[c(1,3)]) / 700}
   x <- x[order(x$min),]
   plot(st_geometry(x), col = NA, border = NA, add = add)
-  for(i in 1:nrow(x)){
+  for(i in seq_len(nrow(x))){
     p <- st_geometry(x[i,])
     plot(p + c(-shift, shift), col = light, border = light, add = TRUE)
     plot(p + c(shift*5/3, -shift*5/3), col = dark, border = dark, add = TRUE)

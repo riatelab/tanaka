@@ -1,7 +1,7 @@
 ## this function is a light version of legendChoro from cartography...
 #' @name legendtanaka
 #' @title legendtanaka
-#' @importFrom graphics par rect strheight strwidth xinch
+#' @importFrom graphics par rect strheight strwidth xinch text
 #' @noRd
 legendtanaka <- function(pos = "topleft",
                          title.txt = "Title of the legend",
@@ -41,7 +41,8 @@ legendtanaka <- function(pos = "topleft",
   longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
   legend_xsize <- max(width + longval,
                       strwidth(title.txt, cex = title.cex) - delta2) - delta2
-  legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt, cex = title.cex)
+  legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt,
+                                                           cex = title.cex)
 
   # Get legend position
   legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,

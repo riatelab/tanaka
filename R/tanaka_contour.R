@@ -9,10 +9,11 @@
 #' id, min (minimum value of the raster in the MULTIPOLYGON) and max (maximum
 #' value of the raster in the MULTIPOLYGON).
 #' @export
-#' @import sf
-#' @import isoband
-#' @import raster
-#' @import lwgeom
+#' @importFrom sf st_sf st_sfc st_geometry st_collection_extract st_crs st_agr<-
+#' st_cast st_intersection st_union st_as_sf st_geometry<-
+#' @importFrom isoband isobands iso_to_sfg
+#' @importFrom raster extent ncol nrow xres yres values
+#' @importFrom lwgeom st_make_valid
 #' @examples
 #' library(tanaka)
 #' library(raster)
@@ -42,19 +43,17 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask){
   }else{
     breaks <- sort(unique(c(vmin, breaks[breaks > vmin & breaks < vmax], vmax)))
   }
-  lev_low = breaks[1:(length(breaks)-1)]
-  lev_high = breaks[2:length(breaks)]
+  lev_low  <- breaks[1:(length(breaks)-1)]
+  lev_high <- breaks[2:length(breaks)]
 
   # raster to sf
-  raw <- isobands(x = lon,
-                  y = lat,
-                  z = m,
+  raw <- isobands(x = lon, y = lat, z = m,
                   levels_low = lev_low,
                   levels_high = c(lev_high[-length(lev_high)], vmax + 1e-10))
 
   bands <- iso_to_sfg(raw)
 
-  iso <- st_sf(id = 1:length(bands),
+  iso <- st_sf(id = seq_along(bands),
                min = lev_low,
                max = lev_high,
                geometry = st_sfc(bands),
