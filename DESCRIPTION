@@ -21,3 +21,5 @@ Suggests:
     testthat,
     sp,
     covr
+URL: https://github.com/rcarto/tanaka/
+BugReports: https://github.com/rcarto/tanaka/issues/
