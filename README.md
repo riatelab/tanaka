@@ -1,4 +1,4 @@
-# Tanaka Method
+# Tanaka
 
 [![Travis build status](https://travis-ci.org/rCarto/tanaka.svg?branch=master)](https://travis-ci.org/rCarto/tanaka)
 [![Coverage status](https://codecov.io/gh/rCarto/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/rCarto/tanaka?branch=master)
@@ -26,6 +26,11 @@ spatial manipulation and display rely on [`sf`](https://github.com/r-spatial/sf)
 
 
 ## Installation
+* From CRAN
+```{r}
+install.packages("tanaka")
+```
+
 * Development version on GitHub
 ```{r}
 require(remotes)
@@ -67,7 +72,6 @@ This map is based on the [Global Human Settlement Population Grid](https://ghsl.
 ```{r}
 library(raster)
 library(sf)
-library(viridis)
 library(cartography)
 library(tanaka)
 
@@ -88,7 +92,8 @@ par(mar = c(0,0,1.2,0))
 tanaka(x = rassmooth, 
        breaks = bks, 
        mask = center, 
-       col = inferno(12),shift = 2500,
+       col = hcl.colors(n = 12, palette = "Inferno"),
+       shift = 2500,
        legend.pos = "topleft",
        legend.title = "Inhabitants\nper km2")
 plot(st_geometry(center), add = T, border = "white", lwd = 6)
