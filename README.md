@@ -1,7 +1,11 @@
 # Tanaka
 
+[![Cran version](https://www.r-pkg.org/badges/version-ago/tanaka)](https://CRAN.R-project.org/package=tanaka)
 [![Travis build status](https://travis-ci.org/rCarto/tanaka.svg?branch=master)](https://travis-ci.org/rCarto/tanaka)
 [![Coverage status](https://codecov.io/gh/rCarto/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/rCarto/tanaka?branch=master)
+[![N. Download](https://cranlogs.r-pkg.org/badges/grand-total/tanaka?color=brightgreen)]()
+
+
 
 ![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/banner.png)  
 
