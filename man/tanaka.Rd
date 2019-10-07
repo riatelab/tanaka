@@ -14,7 +14,7 @@ tanaka(x, nclass = 8, breaks, col, mask, light = "#ffffff70",
 
 \item{nclass}{a number of class.}
 
-\item{breaks}{a list of breaks.}
+\item{breaks}{a vector of break values.}
 
 \item{col}{a color palette (a vector of colors).}
 
@@ -46,11 +46,16 @@ This function plots a tanaka map.
 library(tanaka)
 library(raster)
 library(sf)
-com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"), quiet = TRUE)
+com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"),
+               quiet = TRUE)
 ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
 tanaka(ras)
 tanaka(ras, mask = com)
 tanaka(ras, breaks = seq(80,400,20),
+       legend.pos = "topright",
+       legend.title = "Elevation\\n(meters)")
+tanaka(ras, nclass = 15,
+       col = hcl.colors(15, "YlOrRd"),
        legend.pos = "topright",
        legend.title = "Elevation\\n(meters)")
 }

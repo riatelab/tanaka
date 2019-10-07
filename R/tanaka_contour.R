@@ -3,7 +3,7 @@
 #' @description Create a contour layer.
 #' @param x a raster object.
 #' @param nclass a number of class.
-#' @param breaks a list of breaks.
+#' @param breaks a vector of break values.
 #' @param mask a mask layer, a POLYGON or MULTIPOLYGON sf object.
 #' @return A MULTIPOLYGON sf object is return. The data.frame contains 3 fields:
 #' id, min (minimum value of the raster in the MULTIPOLYGON) and max (maximum

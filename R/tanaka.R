@@ -4,7 +4,7 @@
 #' @param x a raster or an sf contour layer (e.g. the result of
 #' \code{tanaka_contour()}).
 #' @param nclass a number of class.
-#' @param breaks a list of breaks.
+#' @param breaks a vector of break values.
 #' @param mask a mask layer, a POLYGON or MULTIPOLYGON sf object.
 #' @param col a color palette (a vector of colors).
 #' @param light light shadow (NW color).
@@ -28,11 +28,16 @@
 #' library(tanaka)
 #' library(raster)
 #' library(sf)
-#' com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"), quiet = TRUE)
+#' com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"),
+#'                quiet = TRUE)
 #' ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
 #' tanaka(ras)
 #' tanaka(ras, mask = com)
 #' tanaka(ras, breaks = seq(80,400,20),
+#'        legend.pos = "topright",
+#'        legend.title = "Elevation\n(meters)")
+#' tanaka(ras, nclass = 15,
+#'        col = hcl.colors(15, "YlOrRd"),
 #'        legend.pos = "topright",
 #'        legend.title = "Elevation\n(meters)")
 tanaka <- function(x,

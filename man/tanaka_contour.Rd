@@ -11,7 +11,7 @@ tanaka_contour(x, nclass = 8, breaks, mask)
 
 \item{nclass}{a number of class.}
 
-\item{breaks}{a list of breaks.}
+\item{breaks}{a vector of break values.}
 
 \item{mask}{a mask layer, a POLYGON or MULTIPOLYGON sf object.}
 }
