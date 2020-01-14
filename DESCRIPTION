@@ -1,7 +1,7 @@
 Package: tanaka
 Type: Package
 Title: Design Shaded Contour Lines (or Tanaka) Maps
-Version: 0.1.1
+Version: 0.1.1.1
 Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", 
     role = c("cre","aut"), comment = c(ORCID = "0000-0002-1932-3323"))
 Description: The Tanaka method enhances the representation of topography on a map using shaded contour lines. In this simplified implementation of the method, north-west white contours represent illuminated topography and south-east black contours represent shaded topography. See Tanaka (1950) <doi:10.2307/211219>.
@@ -16,10 +16,9 @@ Imports:
     graphics
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: 
     testthat,
-    sp,
     covr
 URL: https://github.com/rcarto/tanaka/
 BugReports: https://github.com/rcarto/tanaka/issues/

@@ -4,9 +4,19 @@
 \alias{tanaka}
 \title{Plot a Tanaka Map}
 \usage{
-tanaka(x, nclass = 8, breaks, col, mask, light = "#ffffff70",
-  dark = "#00000090", shift, legend.pos = "left",
-  legend.title = "Elevation", add = FALSE)
+tanaka(
+  x,
+  nclass = 8,
+  breaks,
+  col,
+  mask,
+  light = "#ffffff70",
+  dark = "#00000090",
+  shift,
+  legend.pos = "left",
+  legend.title = "Elevation",
+  add = FALSE
+)
 }
 \arguments{
 \item{x}{a raster or an sf contour layer (e.g. the result of
@@ -53,11 +63,11 @@ tanaka(ras)
 tanaka(ras, mask = com)
 tanaka(ras, breaks = seq(80,400,20),
        legend.pos = "topright",
-       legend.title = "Elevation\\n(meters)")
+       legend.title = "Elevation\n(meters)")
 tanaka(ras, nclass = 15,
        col = hcl.colors(15, "YlOrRd"),
        legend.pos = "topright",
-       legend.title = "Elevation\\n(meters)")
+       legend.title = "Elevation\n(meters)")
 }
 \references{
 Tanaka, K. (1950). The relief contour method of representing

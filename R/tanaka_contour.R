@@ -78,9 +78,6 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask) {
 
   # mask management
   if (!missing(mask)) {
-    if (methods::is(mask, "Spatial")) {
-      mask <- st_as_sf(mask)
-    }
     st_agr(iso) <- "constant"
     iso <- st_cast(st_intersection(x = iso, y = st_union(mask)))
   }

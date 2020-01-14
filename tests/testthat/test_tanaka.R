@@ -9,7 +9,7 @@ test_that("contour works", {
   expect_silent(tanaka_contour(x = ras))
   expect_silent(tanaka_contour(x = ras, nclass = 20))
   expect_silent(tanaka_contour(x = ras, breaks = seq(80, 420, 30)))
-  expect_silent(tanaka_contour(x = ras, mask = as(com, "Spatial")))
+  expect_silent(tanaka_contour(x = ras, mask = com))
 })
 
 
