@@ -11,6 +11,7 @@
 #' @export
 #' @importFrom sf st_sf st_sfc st_geometry st_collection_extract st_crs st_agr<-
 #' st_cast st_intersection st_union st_as_sf st_geometry<- st_set_crs
+#' st_make_valid
 #' @importFrom isoband isobands iso_to_sfg
 #' @importFrom raster extent ncol nrow xres yres values
 #' @examples
@@ -69,11 +70,7 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask) {
   )
 
   # clean geoms
-  if (utils::packageVersion("sf") < "0.9.0"){
-    st_geometry(iso) <- lwgeom::st_make_valid(st_geometry(iso))
-  }else{
-    st_geometry(iso) <- sf::st_make_valid(st_geometry(iso))
-  }
+  st_geometry(iso) <- st_make_valid(st_geometry(iso))
 
   if (methods::is(st_geometry(iso), "sfc_GEOMETRY")) {
     st_geometry(iso) <-

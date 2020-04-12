@@ -11,15 +11,14 @@ Imports:
     sf, 
     isoband, 
     methods, 
-    lwgeom, 
     grDevices, 
-    graphics, 
-    utils
+    graphics
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
 Suggests: 
     testthat,
-    covr
+    covr, 
+    lwgeom
 URL: https://github.com/rcarto/tanaka/
 BugReports: https://github.com/rcarto/tanaka/issues/
