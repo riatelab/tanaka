@@ -83,7 +83,7 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask) {
     if(st_crs(iso)$proj4string == st_crs(mask)$proj4string){
       iso <- st_set_crs(iso, NA)
       iso <- st_set_crs(iso, st_crs(mask))
-      iso <- st_cast(st_intersection(x = iso, y = st_union(mask)))
+      iso <- st_cast(st_intersection(x = iso, y = st_union(st_geometry(mask))))
     }
   }
   return(iso)
