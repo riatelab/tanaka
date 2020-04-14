@@ -3,8 +3,6 @@ r:
   - release
   - devel
 
-cache: packages
-
 sudo: required
 
 dist: trusty
