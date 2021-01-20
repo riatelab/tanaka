@@ -1,14 +1,14 @@
 # Tanaka
 
 [![Cran version](https://www.r-pkg.org/badges/version-ago/tanaka)](https://CRAN.R-project.org/package=tanaka)
-[![R-CMD-check](https://github.com/rCarto/tanaka/workflows/R-CMD-check/badge.svg)](https://github.com/rCarto/tanaka/actions)
-[![Coverage status](https://codecov.io/gh/rCarto/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/rCarto/tanaka?branch=master)
+[![R-CMD-check](https://github.com/riatelab/tanaka/workflows/R-CMD-check/badge.svg)](https://github.com/riatelab/tanaka/actions)
+[![Coverage status](https://codecov.io/gh/riatelab/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/riatelab/tanaka?branch=master)
 ![N. Download](https://cranlogs.r-pkg.org/badges/grand-total/tanaka?color=brightgreen)  
 
 
 
 
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/banner.png)  
+![](https://raw.githubusercontent.com/riatelab/tanaka/master/img/banner.png)  
 
 Also called "relief contours method", "illuminated contour method" or "shaded 
 contour lines method", the Tanaka method<sup>[1](#fn1)</sup> enhances the representation of topography 
@@ -39,7 +39,7 @@ install.packages("tanaka")
 * Development version on GitHub
 ```{r}
 require(remotes)
-install_github("rCarto/tanaka")
+install_github("riatelab/tanaka")
 ```
 
 ## Demo
@@ -52,7 +52,7 @@ ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
 tanaka(ras, breaks = seq(80,400,20), 
        legend.pos = "topright", legend.title = "Elevation\n(meters)")
 ```
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex1.png)  
+![](https://raw.githubusercontent.com/riatelab/tanaka/master/img/ex1.png)  
 
 * This example is based on an  elevation raster downloaded via 
 [`elevatr`](https://github.com/jhollist/elevatr). 
@@ -69,7 +69,7 @@ cols <- c("#F7E1C6", "#EED4C1", "#E5C9BE", "#DCBEBA", "#D3B3B6", "#CAA8B3",
 # display the map
 tanaka(ras, breaks = seq(500,4800,250), col = cols)
 ```
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/ex2.png)  
+![](https://raw.githubusercontent.com/riatelab/tanaka/master/img/ex2.png)  
 
 * The last example illustrates the use of tanaka with non-topographical data. 
 This map is based on the [Global Human Settlement Population Grid](https://ghsl.jrc.ec.europa.eu/ghs_pop.php) (1km). 
@@ -110,7 +110,7 @@ dev.off()
 ```
 
 
-![](https://raw.githubusercontent.com/rCarto/tanaka/master/img/circle.png)
+![](https://raw.githubusercontent.com/riatelab/tanaka/master/img/circle.png)
 
 ## Alternative Package
 The [`metR` package](https://CRAN.R-project.org/package=metR) allows to draw [Tanaka contours with ggplot2](https://eliocamp.github.io/metR/reference/geom_contour_tanaka.html).

@@ -24,5 +24,5 @@ Suggests:
     testthat,
     covr, 
     lwgeom
-URL: https://github.com/rcarto/tanaka/
-BugReports: https://github.com/rcarto/tanaka/issues/
+URL: https://github.com/riatelab/tanaka/
+BugReports: https://github.com/riatelab/tanaka/issues/
