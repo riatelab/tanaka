@@ -20,9 +20,11 @@
 #' library(sf)
 #' ras <- rast(system.file("tif/elev.tif", package = "tanaka"))
 #' iso <- tanaka_contour(x = ras)
-#' plot(st_geometry(iso), col = c("#FBDEE1", "#F0BFC3", "#E7A1A6",
-#'                                "#DD8287", "#D05A60", "#C03239",
-#'                                "#721B20", "#1D0809"))
+#' plot(st_geometry(iso), col = c(
+#'   "#FBDEE1", "#F0BFC3", "#E7A1A6",
+#'   "#DD8287", "#D05A60", "#C03239",
+#'   "#721B20", "#1D0809"
+#' ))
 tanaka_contour <- function(x, nclass = 8, breaks, mask) {
   ext <- ext(x)
   nc <- ncol(x)
@@ -32,22 +34,26 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask) {
 
   lon <- seq(ext[1] + xr, ext[2] - xr, length.out = nc)
   lat <- seq(ext[4] - yr, ext[3] + yr, length.out = nr)
-  m <- matrix(data = values(x),
-              nrow = nr,
-              byrow = TRUE)
+  m <- matrix(
+    data = values(x),
+    nrow = nr,
+    byrow = TRUE
+  )
 
   # breaks management
   vmin <- min(m, na.rm = TRUE)
   vmax <- max(m, na.rm = TRUE)
   if (missing(breaks)) {
-    breaks <- seq(from = vmin,
-                  to = vmax,
-                  length.out = (nclass + 1))
-  } else{
+    breaks <- seq(
+      from = vmin,
+      to = vmax,
+      length.out = (nclass + 1)
+    )
+  } else {
     breaks <-
       sort(unique(c(vmin, breaks[breaks > vmin & breaks < vmax], vmax)))
   }
-  lev_low  <- breaks[1:(length(breaks) - 1)]
+  lev_low <- breaks[1:(length(breaks) - 1)]
   lev_high <- breaks[2:length(breaks)]
 
   # raster to sf
@@ -80,7 +86,7 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask) {
   # mask management
   if (!missing(mask)) {
     st_agr(iso) <- "constant"
-    if(st_crs(iso) == st_crs(mask)){
+    if (st_crs(iso) == st_crs(mask)) {
       iso <- st_cast(st_intersection(x = iso, y = st_union(st_geometry(mask))))
     }
   }

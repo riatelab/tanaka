@@ -29,17 +29,22 @@
 #' library(terra)
 #' library(sf)
 #' com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"),
-#'                quiet = TRUE)
+#'   quiet = TRUE
+#' )
 #' ras <- rast(system.file("tif/elev.tif", package = "tanaka"))
 #' tanaka(ras)
 #' tanaka(ras, mask = com)
-#' tanaka(ras, breaks = seq(80,400,20),
-#'        legend.pos = "topright",
-#'        legend.title = "Elevation\n(meters)")
-#' tanaka(ras, nclass = 15,
-#'        col = hcl.colors(15, "YlOrRd"),
-#'        legend.pos = "topright",
-#'        legend.title = "Elevation\n(meters)")
+#' tanaka(ras,
+#'   breaks = seq(80, 400, 20),
+#'   legend.pos = "topright",
+#'   legend.title = "Elevation\n(meters)"
+#' )
+#' tanaka(ras,
+#'   nclass = 15,
+#'   col = hcl.colors(15, "YlOrRd"),
+#'   legend.pos = "topright",
+#'   legend.title = "Elevation\n(meters)"
+#' )
 tanaka <- function(x,
                    nclass = 8,
                    breaks,
@@ -92,9 +97,10 @@ tanaka <- function(x,
   }
   x <- x[order(x$min), ]
   plot(st_geometry(x),
-       col = NA,
-       border = NA,
-       add = add)
+    col = NA,
+    border = NA,
+    add = add
+  )
   for (i in seq_len(nrow(x))) {
     p <- st_geometry(x[i, ])
     plot(
@@ -110,9 +116,10 @@ tanaka <- function(x,
       add = TRUE
     )
     plot(p,
-         col = col[i],
-         border = "NA",
-         add = TRUE)
+      col = col[i],
+      border = "NA",
+      add = TRUE
+    )
   }
   legendtanaka(
     pos = legend.pos,

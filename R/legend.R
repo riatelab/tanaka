@@ -52,11 +52,14 @@ legendtanaka <- function(pos = "topleft",
 
   nodata.txt <- NULL
   longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
-  legend_xsize <- max(width + longval,
-                      strwidth(title.txt, cex = title.cex) - delta2) - delta2
+  legend_xsize <- max(
+    width + longval,
+    strwidth(title.txt, cex = title.cex) - delta2
+  ) - delta2
   legend_ysize <-
-    (length(breaks) - 1) * height +  strheight(title.txt,
-                                               cex = title.cex)
+    (length(breaks) - 1) * height + strheight(title.txt,
+      cex = title.cex
+    )
 
   # Get legend position
   legcoord <- legpos(
