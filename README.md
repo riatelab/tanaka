@@ -22,7 +22,7 @@ based on the Kennelly and Kimerling's paper<sup>[2](#fn2)</sup>.
 
 `tanaka` is a small package with two functions:
 
-- `tanaka()` uses a `raster` object and displays the map directly;
+- `tanaka()` uses a `terra` object and displays the map directly;
 - `tanaka_contour()` builds the isopleth polygon layer. 
 
 
@@ -59,9 +59,11 @@ tanaka(ras, breaks = seq(80,400,20),
 ```{r}
 library(tanaka)
 library(elevatr)
+library(terra)
 # use elevatr to get elevation data
 ras <- get_elev_raster(locations = data.frame(x = c(6.7, 7), y = c(45.8,46)),
-                       z = 10, prj = "+init=epsg:4326", clip = "locations")
+                       z = 10, prj = "EPSG:4326", clip = "locations")
+ras <- rast(ras)
 # custom color palette
 cols <- c("#F7E1C6", "#EED4C1", "#E5C9BE", "#DCBEBA", "#D3B3B6", "#CAA8B3", 
           "#C19CAF", "#B790AB", "#AC81A7", "#A073A1", "#95639D", "#885497", 

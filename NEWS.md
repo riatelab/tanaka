@@ -1,3 +1,11 @@
+# tanaka 0.2.0
+
+## Major changes
+
+- We use terra instead of raster for all things raster
+- We use tinytest instead of testthat
+
+
 # tanaka 0.1.3
 
 ## Minor changes

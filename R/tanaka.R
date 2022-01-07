@@ -26,11 +26,11 @@
 #' @return A Tanaka contour map is plotted.
 #' @examples
 #' library(tanaka)
-#' library(raster)
+#' library(terra)
 #' library(sf)
 #' com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"),
 #'                quiet = TRUE)
-#' ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
+#' ras <- rast(system.file("tif/elev.tif", package = "tanaka"))
 #' tanaka(ras)
 #' tanaka(ras, mask = com)
 #' tanaka(ras, breaks = seq(80,400,20),
@@ -51,7 +51,7 @@ tanaka <- function(x,
                    legend.pos = "left",
                    legend.title = "Elevation",
                    add = FALSE) {
-  if (methods::is(x, "RasterLayer")) {
+  if (methods::is(x, "SpatRaster")) {
     x <-
       tanaka_contour(
         x = x,

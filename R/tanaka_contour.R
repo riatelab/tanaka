@@ -10,21 +10,21 @@
 #' value of the raster in the MULTIPOLYGON).
 #' @export
 #' @importFrom sf st_sf st_sfc st_geometry st_collection_extract st_crs st_agr<-
-#' st_cast st_intersection st_union st_as_sf st_geometry<- st_set_crs
+#' st_cast st_intersection st_union st_as_sf st_geometry<-
 #' st_make_valid
 #' @importFrom isoband isobands iso_to_sfg
-#' @importFrom raster extent ncol nrow xres yres values
+#' @importFrom terra ext ncol nrow xres yres values
 #' @examples
 #' library(tanaka)
-#' library(raster)
+#' library(terra)
 #' library(sf)
-#' ras <- raster(system.file("grd/elev.grd", package = "tanaka"))
+#' ras <- rast(system.file("tif/elev.tif", package = "tanaka"))
 #' iso <- tanaka_contour(x = ras)
 #' plot(st_geometry(iso), col = c("#FBDEE1", "#F0BFC3", "#E7A1A6",
 #'                                "#DD8287", "#D05A60", "#C03239",
 #'                                "#721B20", "#1D0809"))
 tanaka_contour <- function(x, nclass = 8, breaks, mask) {
-  ext <- extent(x)
+  ext <- ext(x)
   nc <- ncol(x)
   nr <- nrow(x)
   xr <- xres(x) / 2
@@ -80,9 +80,7 @@ tanaka_contour <- function(x, nclass = 8, breaks, mask) {
   # mask management
   if (!missing(mask)) {
     st_agr(iso) <- "constant"
-    if(st_crs(iso)$proj4string == st_crs(mask)$proj4string){
-      iso <- st_set_crs(iso, NA)
-      iso <- st_set_crs(iso, st_crs(mask))
+    if(st_crs(iso) == st_crs(mask)){
       iso <- st_cast(st_intersection(x = iso, y = st_union(st_geometry(mask))))
     }
   }
