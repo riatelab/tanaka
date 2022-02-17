@@ -57,17 +57,22 @@ library(tanaka)
 library(terra)
 library(sf)
 com <- st_read(system.file("gpkg/com.gpkg", package = "tanaka"),
-               quiet = TRUE)
+  quiet = TRUE
+)
 ras <- rast(system.file("tif/elev.tif", package = "tanaka"))
 tanaka(ras)
 tanaka(ras, mask = com)
-tanaka(ras, breaks = seq(80,400,20),
-       legend.pos = "topright",
-       legend.title = "Elevation\n(meters)")
-tanaka(ras, nclass = 15,
-       col = hcl.colors(15, "YlOrRd"),
-       legend.pos = "topright",
-       legend.title = "Elevation\n(meters)")
+tanaka(ras,
+  breaks = seq(80, 400, 20),
+  legend.pos = "topright",
+  legend.title = "Elevation\n(meters)"
+)
+tanaka(ras,
+  nclass = 15,
+  col = hcl.colors(15, "YlOrRd"),
+  legend.pos = "topright",
+  legend.title = "Elevation\n(meters)"
+)
 }
 \references{
 Tanaka, K. (1950). The relief contour method of representing

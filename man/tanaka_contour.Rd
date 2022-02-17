@@ -29,7 +29,9 @@ library(terra)
 library(sf)
 ras <- rast(system.file("tif/elev.tif", package = "tanaka"))
 iso <- tanaka_contour(x = ras)
-plot(st_geometry(iso), col = c("#FBDEE1", "#F0BFC3", "#E7A1A6",
-                               "#DD8287", "#D05A60", "#C03239",
-                               "#721B20", "#1D0809"))
+plot(st_geometry(iso), col = c(
+  "#FBDEE1", "#F0BFC3", "#E7A1A6",
+  "#DD8287", "#D05A60", "#C03239",
+  "#721B20", "#1D0809"
+))
 }
