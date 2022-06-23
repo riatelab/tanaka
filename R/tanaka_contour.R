@@ -12,8 +12,7 @@
 #' @importFrom sf st_sf st_sfc st_geometry st_collection_extract st_crs st_agr<-
 #' st_cast st_intersection st_union st_as_sf st_geometry<-
 #' st_make_valid
-#' @importFrom isoband isobands iso_to_sfg
-#' @importFrom terra ext ncol nrow xres yres values
+#' @importFrom mapiso mapiso
 #' @examples
 #' library(tanaka)
 #' library(terra)
@@ -26,69 +25,7 @@
 #'   "#721B20", "#1D0809"
 #' ))
 tanaka_contour <- function(x, nclass = 8, breaks, mask) {
-  ext <- ext(x)
-  nc <- ncol(x)
-  nr <- nrow(x)
-  xr <- xres(x) / 2
-  yr <- yres(x) / 2
-
-  lon <- seq(ext[1] + xr, ext[2] - xr, length.out = nc)
-  lat <- seq(ext[4] - yr, ext[3] + yr, length.out = nr)
-  m <- matrix(
-    data = values(x),
-    nrow = nr,
-    byrow = TRUE
-  )
-
-  # breaks management
-  vmin <- min(m, na.rm = TRUE)
-  vmax <- max(m, na.rm = TRUE)
-  if (missing(breaks)) {
-    breaks <- seq(
-      from = vmin,
-      to = vmax,
-      length.out = (nclass + 1)
-    )
-  } else {
-    breaks <-
-      sort(unique(c(vmin, breaks[breaks > vmin & breaks < vmax], vmax)))
-  }
-  lev_low <- breaks[1:(length(breaks) - 1)]
-  lev_high <- breaks[2:length(breaks)]
-
-  # raster to sf
-  raw <- isobands(
-    x = lon,
-    y = lat,
-    z = m,
-    levels_low = lev_low,
-    levels_high = c(lev_high[-length(lev_high)], vmax + 1e-10)
-  )
-
-  bands <- iso_to_sfg(raw)
-
-  iso <- st_sf(
-    id = seq_along(bands),
-    min = lev_low,
-    max = lev_high,
-    geometry = st_sfc(bands),
-    crs = st_crs(x)
-  )
-
-  # clean geoms
-  st_geometry(iso) <- st_make_valid(st_geometry(iso))
-
-  if (methods::is(st_geometry(iso), "sfc_GEOMETRY")) {
-    st_geometry(iso) <-
-      st_collection_extract(st_geometry(iso), "POLYGON")
-  }
-
-  # mask management
-  if (!missing(mask)) {
-    st_agr(iso) <- "constant"
-    if (st_crs(iso) == st_crs(mask)) {
-      iso <- st_cast(st_intersection(x = iso, y = st_union(st_geometry(mask))))
-    }
-  }
+  iso <- mapiso(x = x, nbreaks = nclass, breaks = breaks, mask = mask)
+  names(iso)[1:3] <- c("id", "min", "max")
   return(iso)
 }
