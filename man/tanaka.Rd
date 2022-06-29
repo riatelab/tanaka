@@ -20,7 +20,7 @@ tanaka(
 }
 \arguments{
 \item{x}{a raster or an sf contour layer (e.g. the result of
-\code{tanaka_contour()}).}
+\code{tanaka_contour()}, "min" and "max" columns are needed).}
 
 \item{nclass}{a number of class.}
 
