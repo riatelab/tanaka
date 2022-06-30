@@ -2,7 +2,7 @@
 #' @name tanaka
 #' @description This function plots a tanaka map.
 #' @param x a raster or an sf contour layer (e.g. the result of
-#' \code{tanaka_contour()}).
+#' \code{tanaka_contour()}, "min" and "max" columns are needed).
 #' @param nclass a number of class.
 #' @param breaks a vector of break values.
 #' @param mask a mask layer, a POLYGON or MULTIPOLYGON sf object.
