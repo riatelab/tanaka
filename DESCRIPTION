@@ -1,7 +1,7 @@
 Package: tanaka
 Type: Package
 Title: Design Shaded Contour Lines (or Tanaka) Maps
-Version: 0.3.0.0
+Version: 0.3.0
 Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr", 
     role = c("cre","aut"), comment = c(ORCID = "0000-0002-1932-3323"))
 Description: The Tanaka method enhances the representation of topography on
@@ -13,8 +13,7 @@ License: GPL-3
 Imports: 
     terra, 
     sf, 
-    isoband, 
-    methods, 
+    mapiso, 
     grDevices, 
     graphics
 Encoding: UTF-8

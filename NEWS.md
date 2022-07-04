@@ -1,3 +1,9 @@
+# tanaka 0.3.0
+
+## Minor changes
+- replace isoband by mapiso
+- use inherits() instead of is() (remove methods from Imports)
+
 # tanaka 0.2.0
 
 ## Major changes
@@ -10,7 +16,7 @@
 
 ## Minor changes
 
-- Changes to accomodate sf >= 0.9 and st_make_valid no longer in lwgeom
+- Changes to accommodate sf >= 0.9 and st_make_valid no longer in lwgeom
 
 
 

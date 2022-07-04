@@ -21,6 +21,7 @@
 #' @importFrom sf st_geometry st_bbox
 #' @importFrom grDevices colorRampPalette
 #' @importFrom graphics plot
+#' @importFrom terra crs
 #' @references Tanaka, K. (1950). The relief contour method of representing
 #' topography on maps. \emph{Geographical Review, 40}(3), 444-456.
 #' @return A Tanaka contour map is plotted.
@@ -56,7 +57,7 @@ tanaka <- function(x,
                    legend.pos = "left",
                    legend.title = "Elevation",
                    add = FALSE) {
-  if (methods::is(x, "SpatRaster")) {
+  if (inherits(x = x, what = "SpatRaster")) {
     x <-
       tanaka_contour(
         x = x,
