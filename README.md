@@ -6,7 +6,9 @@
 [![R-CMD-check](https://github.com/riatelab/tanaka/workflows/R-CMD-check/badge.svg)](https://github.com/riatelab/tanaka/actions)
 [![Coverage status](https://codecov.io/gh/riatelab/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/riatelab/tanaka?branch=master)
 ![N. Download](https://cranlogs.r-pkg.org/badges/grand-total/tanaka?color=brightgreen)  
-
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 
 

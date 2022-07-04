@@ -5,3 +5,5 @@
 ^data-raw$
 ^img$
 ^\.github$
+^codemeta\.json$
+^CITATION\.cff$
