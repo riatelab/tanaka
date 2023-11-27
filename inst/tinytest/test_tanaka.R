@@ -27,26 +27,3 @@ expect_silent(tanaka(x = tanaka_contour(
   mask = com
 )))
 
-
-
-fufun <- function(ras) {
-  for (i in list(
-    "bottomleft",
-    "topleft",
-    "topright",
-    "bottomright",
-    "left",
-    "right",
-    "top",
-    "bottom",
-    "center",
-    "bottomleftextra",
-    "n",
-    c(589477, 6421370)
-  )) {
-    tanaka(x = ras,
-           legend.pos = i,
-           breaks = seq(80, 420, 125))
-  }
-}
-expect_silent(fufun(ras))

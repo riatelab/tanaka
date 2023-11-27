@@ -1,3 +1,9 @@
+# tanaka 0.4.0
+
+## Minor changes
+- use maplegend for legends
+
+
 # tanaka 0.3.0
 
 ## Minor changes

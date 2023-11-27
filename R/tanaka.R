@@ -10,10 +10,12 @@
 #' @param light light shadow (NW color).
 #' @param dark dark shadow (SE color).
 #' @param shift size of the shadow (in map units).
-#' @param legend.pos  position of the legend, one of "topleft", "top",
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a
-#' vector of two coordinates in map units (c(x, y)). If
-#' legend.pos="n" then the legend is not plotted.
+#' @param legend.pos position of the legend, one of 'topleft', 'top',
+#' 'topright', 'right', 'bottomright', 'bottom', 'bottomleft',
+#' 'left' or a vector of two coordinates in map units (c(x, y)).
+#' If leg.position = NA then the legend is not plotted.
+#' If leg.position = 'interactive' click on the map to choose the
+#' legend position.
 #' @param legend.title title of the legend.
 #' @param add whether to add the layer to an existing plot (TRUE) or
 #' not (FALSE).
@@ -22,6 +24,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom graphics plot
 #' @importFrom terra crs
+#' @importFrom maplegend leg
 #' @references Tanaka, K. (1950). The relief contour method of representing
 #' topography on maps. \emph{Geographical Review, 40}(3), 444-456.
 #' @return A Tanaka contour map is plotted.
@@ -122,12 +125,13 @@ tanaka <- function(x,
       add = TRUE
     )
   }
-  legendtanaka(
+  leg(
+    type = "choro",
     pos = legend.pos,
-    breaks = c(x$min, max(x$max)),
-    values.rnd = 0,
-    col = col,
-    title.txt = legend.title,
-    cex = 0.8
+    val = c(x$min, max(x$max)),
+    val_rnd = 0,
+    pal = col,
+    title = legend.title,
+    size = 0.8, title_cex = .8, val_cex = .6,
   )
 }

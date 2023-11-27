@@ -36,10 +36,12 @@ tanaka(
 
 \item{shift}{size of the shadow (in map units).}
 
-\item{legend.pos}{position of the legend, one of "topleft", "top",
-"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a
-vector of two coordinates in map units (c(x, y)). If
-legend.pos="n" then the legend is not plotted.}
+\item{legend.pos}{position of the legend, one of 'topleft', 'top',
+'topright', 'right', 'bottomright', 'bottom', 'bottomleft',
+'left' or a vector of two coordinates in map units (c(x, y)).
+If leg.position = NA then the legend is not plotted.
+If leg.position = 'interactive' click on the map to choose the
+legend position.}
 
 \item{legend.title}{title of the legend.}
 

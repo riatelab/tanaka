@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/riatelab/tanaka/",
   "issueTracker": "https://github.com/riatelab/tanaka/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -115,19 +115,27 @@
     },
     "4": {
       "@type": "SoftwareApplication",
+      "identifier": "maplegend",
+      "name": "maplegend",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=maplegend"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "grDevices",
       "name": "grDevices"
     },
-    "5": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "graphics",
       "name": "graphics"
     },
     "SystemRequirements": null
   },
-  "fileSize": "633.939KB",
-  "releaseNotes": "https://github.com/riatelab/tanaka/blob/master/NEWS.md",
-  "readme": "https://github.com/riatelab/tanaka/blob/master/README.md",
-  "contIntegration": ["https://github.com/riatelab/tanaka/actions", "https://codecov.io/github/riatelab/tanaka?branch=master"],
-  "keywords": ["map", "r-package", "spatial", "tanaka"]
+  "fileSize": "630.085KB"
 }
