@@ -4,7 +4,7 @@
 
 [![Cran version](https://www.r-pkg.org/badges/version-ago/tanaka)](https://CRAN.R-project.org/package=tanaka)
 [![R-CMD-check](https://github.com/riatelab/tanaka/workflows/R-CMD-check/badge.svg)](https://github.com/riatelab/tanaka/actions)
-[![Coverage status](https://codecov.io/gh/riatelab/tanaka/branch/master/graph/badge.svg)](https://codecov.io/github/riatelab/tanaka?branch=master)
+[![Coverage status](https://codecov.io/gh/riatelab/tanaka/branch/master/graph/badge.svg)](https://app.codecov.io/github/riatelab/tanaka?branch=master)
 ![N. Download](https://cranlogs.r-pkg.org/badges/grand-total/tanaka?color=brightgreen)  
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -28,7 +28,7 @@ based on the Kennelly and Kimerling's paper<sup>[2](#fn2)</sup>.
 - `tanaka_contour()` builds the isopleth polygon layer. 
 
 
-The contour lines creation relies on [`isoband`](https://github.com/wilkelab/isoband), 
+The contour lines creation relies on [`mapiso`](https://github.com/riatelab/mapiso), 
 spatial manipulation and display rely on [`sf`](https://github.com/r-spatial/sf). 
 
 
